@@ -2,14 +2,19 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
+    <!-- Important pour la partie responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hire me, I'm awesome</title>
+    <!-- ^--- Oups, faute de frappe. Mais pensez-y ! -->
+
+
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cardsboard.css">
 </head>
 <body>
 <div class="container">
     <h1 class="title">Pokérandom.</h1>
-    <h2 class="subtitle">C'est des pokémon mais pas dans l'ordre.</h2>
+    <h2 class="subtitle">C'est des Pokémon mais pas dans l'ordre.</h2>
     <div class="columns is-centered">
         <div class="column is-half">
             <progress class="progress memory-timer" value="0" max="10000"></progress>
@@ -18,52 +23,52 @@
     <div class="columns is-centered">
         <div class="column is-half">
             <section class="memory-game">
-                <div class="memory-card" data-framework="banana">
-                    <img class="front-face" src="images/banana.png" alt="Image d'une banane"/>
+                <div class="memory-card" data-framework="carapuce">
+                    <img class="front-face" src="images/carapuce.png" alt="Image d'une banane"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="banana">
-                    <img class="front-face" src="images/banana.png" alt="Image d'une banane"/>
+                <div class="memory-card" data-framework="carapuce">
+                    <img class="front-face" src="images/carapuce.png" alt="Image d'une banane"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="apple">
-                    <img class="front-face" src="images/apple.png" alt="Image d'une pomme"/>
+                <div class="memory-card" data-framework="salameche">
+                    <img class="front-face" src="images/salameche.png" alt="Image d'une pomme"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="apple">
-                    <img class="front-face" src="images/apple.png" alt="Image d'une pomme"/>
+                <div class="memory-card" data-framework="salameche">
+                    <img class="front-face" src="images/salameche.png" alt="Image d'une pomme"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="cherry">
-                    <img class="front-face" src="images/cherry.png" alt="Image d'une paire de cerises"/>
+                <div class="memory-card" data-framework="bulbizarre">
+                    <img class="front-face" src="images/bulbizarre.png" alt="Image d'une paire de cerises"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="cherry">
-                    <img class="front-face" src="images/cherry.png" alt="Image d'une paire de cerises"/>
+                <div class="memory-card" data-framework="bulbizarre">
+                    <img class="front-face" src="images/bulbizarre.png" alt="Image d'une paire de cerises"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="grape">
-                    <img class="front-face" src="images/grape.png" alt="Image d'une grappe de raisins"/>
+                <div class="memory-card" data-framework="mewtwo">
+                    <img class="front-face" src="images/mewtwo.png" alt="Image d'une grappe de raisins"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="grape">
-                    <img class="front-face" src="images/grape.png" alt="Image d'une grappe de raisins"/>
+                <div class="memory-card" data-framework="mewtwo">
+                    <img class="front-face" src="images/mewtwo.png" alt="Image d'une grappe de raisins"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="mango">
-                    <img class="front-face" src="images/mango.png" alt="Image d'une mangue."/>
+                <div class="memory-card" data-framework="dracolosse">
+                    <img class="front-face" src="images/dracolosse.png" alt="Image d'une mangue."/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="mango">
-                    <img class="front-face" src="images/mango.png" alt="Image d'une mangue"/>
+                <div class="memory-card" data-framework="dracolosse">
+                    <img class="front-face" src="images/dracolosse.png" alt="Image d'une mangue"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="orange">
-                    <img class="front-face" src="images/orange.png" alt="Image d'une orange"/>
+                <div class="memory-card" data-framework="pikachu">
+                    <img class="front-face" src="images/pikachu.png" alt="Image d'une orange"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
-                <div class="memory-card" data-framework="orange">
-                    <img class="front-face" src="images/orange.png" alt="Image d'une orange"/>
+                <div class="memory-card" data-framework="pikachu">
+                    <img class="front-face" src="images/pikachu.png" alt="Image d'une orange"/>
                     <img class="back-face" src="images/back.png" alt="Image mystère"/>
                 </div>
             </section>
@@ -79,6 +84,9 @@ pour laisser la page s'afficher sans attendre le chargement d'un script un peu l
 
 Require.js va nous permettre de faire de la programmation modulaire et d'ainsi créer des briques
 qui pourront intéragir les unes avec les autres sans qu'on se retrouve avec un fichier aussi long qu'un jour sans pain.
+
+Ici, pas de magie, on va se servir de l'attribut data-main pour dire à require.js : charge moi le fichier main.js STP
+Dans ce fichier main.js : on fait notre popote avec nos modules. Simple, basique.
 -->
 <script data-main="app" src="lib/require.min.js"></script>
 </body>
