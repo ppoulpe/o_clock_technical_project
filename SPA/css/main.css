@@ -1,3 +1,5 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css";
+
 * {
     padding: 0;
     margin: 0;
@@ -11,7 +13,6 @@ body {
 }
 
 .memory-game {
-    width: 640px;
     height: 640px;
     margin: auto;
     display: flex;
