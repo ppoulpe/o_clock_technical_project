@@ -1,18 +1,21 @@
-define(function () {
+define(['HTMLPartialRenderer'], function (HTMLPartialRenderer) {
 
     let timer = 0;
     let timerId;
-    const module = {};
 
     const resolve = () => {
+
+        // Le timer est arrivé au bout, toutes les cartes n'ont pas été retourné, c'est perdu.
+        // Dommage.
         if (timer === 10000) {
 
             // On va remplacer le board par le contenu d'un fichier HTML
-            // la balise object va nous permettre d'inclure un code HTML
-            document
-                .querySelector('.memory-game')
-                .innerHTML = '<object data="./partials/game_over.html" width="100%" height="100%">';
+            HTMLPartialRenderer.render(
+                '.memory-game',
+                'game_over'
+            );
 
+            // On arrête le timer pour pas que ça continue de tourner pour rien
             clearInterval(timerId);
         }
 
@@ -22,17 +25,19 @@ define(function () {
             .value = timer++;
     };
 
-    const start = module.start = () => {
-        timerId = setInterval(resolve, 1);
+    /*
+    Puisqu'on fait aucun appel entre nos méthode au sein de notre module, on peut se permettre une folie :
+    Exposer directement nos méthode vers l'exterieur
+     */
+    return {
+        start: () => {
+            timerId = setInterval(resolve, 1);
+        },
+        stop: () => {
+            clearInterval(timerId);
+        },
+        getValue: () => {
+            return timer / 100; // Le timer est en milliseconde, on repart sur des secondes.
+        }
     }
-
-    const stop = module.stop = () => {
-        clearInterval(timerId);
-    };
-
-    const getValue = module.getValue = () => {
-        return timer / 100;
-    };
-
-    return module;
 })
