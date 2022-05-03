@@ -2,10 +2,12 @@
 Memory cards est un mini-jeu développé dans le cadre d'un entretien technique pour l'école O'Clock.
 
 - [Découpage du projet](#decoupage_projet)
-- [Single Page Application](#spa)
+- [Single Page Application (SPA)](#spa)
   - [Démarrage rapide](#spa_demarrage-rapide)
   - [Programmation modulaire](#spa_progammation_modulaire)
   - [Framework CSS](#spa_framework_css)
+- [Application Programming Interface (API)](#api)
+  - [Démarrage rapide](#api_demarrage_rapide) 
 - [Versionning](#versionning)
 - [Liens externes](#spa_lien_externe)
 
@@ -51,6 +53,19 @@ define(function () {
 Le CSS étant plutôt simple, nous partons sur du CSS natif avec l'emploi du framework Bulma pour la gestion du responsive (et pour avoir des éléments HTML classe sans effort).
 
 Les cartes utilisent flex et l'emploi de Bulma est donc totalement facultatif.
+
+## <a name="api"></a> Application Programming Interface
+### <a name="api_prerequise"></a> Prérequis
+L'API nécessite Docker et docker-compose pour fonctionner.
+* [Docker](https://docs.docker.com/get-started/)
+* [docker-compose](https://docs.docker.com/compose/gettingstarted/)
+
+### <a name="api_demarrage_rapide"></a> Démarrage rapide
+Pour démarrer l'API :
+1. Se rendre dans le dossier `API`.
+2. Installer le projet via la commande `docker-compose build --pull --no-cache`
+3. Démarrer les containers `docker-compose up -d`
+4. Se rendre sur l'URL [https://localhost/](https://localhost/)
 
 ## <a name="versionning"></a> Versionning
 Nous utilisons la spécification _Angular_ pour le nommage des commits : https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit
