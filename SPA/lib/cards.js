@@ -1,4 +1,4 @@
-define(['SPA/lib/timer'],function (timer) {
+define(['timer'],function (timer) {
 
     // Je récupère dans une constante toutes mes cartes.
     // Immutable et contient tous les éléments du DOM qui ont la classe ".memory-card"
