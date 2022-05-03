@@ -1,4 +1,4 @@
-define(function () {
+define(['SPA/lib/timer'],function (timer) {
 
     // Je récupère dans une constante toutes mes cartes.
     // Immutable et contient tous les éléments du DOM qui ont la classe ".memory-card"
@@ -8,12 +8,19 @@ define(function () {
     let hasFlippedCard = false;
     let lockBoard = false;
     let firstCard, secondCard;
+    let doneCards = 0;
 
     const module = {};
 
     const disableCards = module.disableCards = () => {
         firstCard.removeEventListener('click', (e) => flipCard(e));
         secondCard.removeEventListener('click', (e) => flipCard(e));
+        doneCards += 2; // On indique que 2 cartes sur 12 on été retournée.
+
+        if(doneCards === 12){
+            timer.stop();
+            alert(`C'est gagné en ${timer.getValue()} secondes`);
+        }
 
         resetBoard();
     };
@@ -28,10 +35,6 @@ define(function () {
 
         isMatch ? disableCards() : unflipCards();
     };
-
-    const getAll = module.getALl = () => {
-        return document.querySelectorAll('.memory-card');
-    }
 
     const flipCard = module.flipCard = (e) => {
 
@@ -62,19 +65,27 @@ define(function () {
         }, 1000);
     }
 
-    const shuffle = module.shuffle = () => {
-        cards.forEach(card => {
-            card.style.order = Math
-                .floor(Math.random() * 12)
-                .toString();
-        });
-    }
-
     const init = module.init = () => {
         cards.forEach(
-            card => card.addEventListener('click', (e) => flipCard(e))
+            card => {
+
+                // Pour chaque carte trouvée dans le DOM, on attache l'event "click"
+                // On pourra dès lors, en cliquant sur chaque carte, la retourner et vérifier si on a du flair
+                // ... ou pas !
+                card.addEventListener('click', (e) => flipCard(e));
+
+                // A chaque init du board, on va mélanger les cartes
+                // L'ordre visuel de chaque élément de la flexbox est définie par l'attribut "order"
+                // On fait donc un random sur cette propriété pour modifier l'ordre d'affichage de chaque carte
+                // https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Flexible_Box_Layout
+                card.style.order = Math
+                    .floor(Math.random() * 12)
+                    .toString();
+            }
         );
-        shuffle();
+
+        // On démarre le timer via le module "timer" injecté plus haut
+        timer.start();
     }
 
     return module;
