@@ -45,10 +45,12 @@ class PostLeaderBoardTest extends WebTestCase
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
         self::assertEquals('johnny.bravo', $responseToAssert->username);
         self::assertEquals(23.1, $responseToAssert->score);
+        self::assertNull($responseToAssert->updatedAt);
         self::assertEquals(
             (new DateTime())->format('d/m/Y'),
             (new DateTime($responseToAssert->createdAt->date))->format('d/m/Y')
         );
+
     }
 
     public function testPostUserScoreWithUnvalidPayload(): void

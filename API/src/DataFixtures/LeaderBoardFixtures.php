@@ -21,6 +21,6 @@ class LeaderBoardFixtures extends Fixture
     {
         yield (new Score())->setUsername('john.doe')->setScore(4367);
         yield (new Score())->setUsername('jane.doe')->setScore(6535);
-        yield (new Score())->setUsername('jerome.dumas')->setScore(1876);
+        yield (new Score())->setUsername('jerome.dumas')->setScore(1876)->setUpdatedAt();
     }
 }

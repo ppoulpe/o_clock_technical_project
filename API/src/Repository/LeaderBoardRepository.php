@@ -34,16 +34,4 @@ class LeaderBoardRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function remove(Score $entity, bool $flush = false): void
-    {
-        $this->_em->remove($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
-    }
 }

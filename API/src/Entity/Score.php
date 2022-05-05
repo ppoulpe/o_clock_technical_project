@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Uid\Uuid;
 
 #[
-    ORM\Entity(repositoryClass: LeaderBoardRepository::class),
+    ORM\Entity(repositoryClass: LeaderBoardRepository::class), // @phpstan-ignore-line
     ORM\Table(name: 'leaderboard'),
     ORM\HasLifecycleCallbacks
 ]
@@ -23,7 +23,7 @@ class Score
         ORM\GeneratedValue(strategy: 'CUSTOM'),
         ORM\CustomIdGenerator(class: UuidGenerator::class)
     ]
-    private Uuid $id;
+    private Uuid $id; // @phpstan-ignore-line
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $username;
@@ -32,7 +32,7 @@ class Score
     private DateTimeImmutable $created_at;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private DateTime $updated_at;
+    private ?DateTimeInterface $updated_at = null;
 
     #[ORM\Column(type: 'integer')]
     private int $score;

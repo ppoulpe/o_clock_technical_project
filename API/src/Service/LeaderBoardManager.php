@@ -36,4 +36,15 @@ class LeaderBoardManager
         // modifier le DOM avec cette nouvelle donnée
         return $userScoreEntity;
     }
+
+    /**
+     * @return array<Score>
+     */
+    public function getLeaderBoardScores(): array
+    {
+        // Je retourne tous les scores du leaderboard
+        return $this
+            ->leaderBoardRepository
+            ->findAll();
+    }
 }
