@@ -8,6 +8,8 @@ Memory cards est un mini-jeu développé dans le cadre d'un entretien technique 
   - [Framework CSS](#spa_framework_css)
 - [Application Programming Interface (API)](#api)
   - [Démarrage rapide](#api_demarrage_rapide) 
+  - [Tests](#api_tests) 
+  - [Commandes disponibles](#api_commands) 
 - [Versionning](#versionning)
 - [Liens externes](#spa_lien_externe)
 
@@ -56,16 +58,36 @@ Les cartes utilisent flex et l'emploi de Bulma est donc totalement facultatif.
 
 ## <a name="api"></a> Application Programming Interface
 ### <a name="api_prerequise"></a> Prérequis
-L'API nécessite Docker et docker-compose pour fonctionner.
+L'API nécessite les composants suivants :
 * [Docker](https://docs.docker.com/get-started/)
 * [docker-compose](https://docs.docker.com/compose/gettingstarted/)
+* [Make](http://gnuwin32.sourceforge.net/packages/make.htm)
 
 ### <a name="api_demarrage_rapide"></a> Démarrage rapide
 Pour démarrer l'API :
 1. Se rendre dans le dossier `API`.
-2. Installer le projet via la commande `docker-compose build --pull --no-cache`
-3. Démarrer les containers `docker-compose up -d`
-4. Se rendre sur l'URL [https://localhost/](https://localhost/)
+2. Lancer la commande `make up && make install` qui va construire et démarrer les containers puis installer le projet.
+3. Se rendre sur l'URL [https://localhost/api/doc](https://localhost/api/doc) pour consulter la documentation de l'API.
+
+### <a name="api_tests"></a> Tests
+L'API est testée fonctionnellement via PHPUnit, le rapport de couverture de code est généré via Pcov et les fixtures sont générées via Doctrine.
+* Les tests se lancent via la commande `make phpunit`
+* Le rapport de couverture de code se situe dans le dossier suivant : `API/build/coverage` 
+
+### <a name="api_commands"></a> Commandes disponibles
+| Commande             | Description                                                                                         |
+|----------------------|-----------------------------------------------------------------------------------------------------|
+| `make start`         | Démarre tous les containers existants.                                                              |
+| `make stop`          | Stop tous les containers existants.                                                                 |
+| `make up`            | Construit et démarre tous les containers.                                                           |
+| `make up-with-build` | Force la construction et démarre tous les containers.                                               |
+| `make bash`          | Lance un bash sur le container PHP. <br/> A utiliser pour installer des dépendances via `composer`. |
+| `make phpunit`       | Execute tous les tests et génère la couverture de code.                                             |
+| `make install`       | Installe le projet (dépendances composer, base local et base de test)                               |
+| `make cs-fixer`      | Corrige les fichiers via cs-fixer (code style)                                                      |
+| `make phpstan`       | Lance une analyse de code                                                                           |
+
+Pour en savoir plus : [Les tests dans Symfony](https://symfony.com/doc/current/testing.html), [Fixtures](https://symfony.com/bundles/DoctrineFixturesBundle/current/index.html)
 
 ## <a name="versionning"></a> Versionning
 Nous utilisons la spécification _Angular_ pour le nommage des commits : https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit
