@@ -30,14 +30,14 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
             throw new CustomUserMessageAuthenticationException('Missing API Key');
         }
 
-        /**
+        /*
          * Aucune restriction particulière, notre API est publique
          *
          * Pour aller plus loin : création d'un compte et association d'une clef / compte
          * pour autoriser uniquement les utilisateurs enregistrés
          */
         return new SelfValidatingPassport(
-            new UserBadge($apiKey, fn() => new PublicApiUser($apiKey))
+            new UserBadge($apiKey, fn () => new PublicApiUser($apiKey))
         );
     }
 
@@ -48,20 +48,18 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
         Request $request,
         TokenInterface $token,
         string $firewallName
-    ): ?Response
-    {
+    ): ?Response {
         return null;
     }
 
     /**
      * Si la clef d'API n'est pas bonne : on renvoi un JSON avec le code 401 (Non autorisé)
-     * On en profite pour indiquer à l'utilisateur qu'il a tout simplement donner de mauvais identifiants (ici la clef d'API)
+     * On en profite pour indiquer à l'utilisateur qu'il a tout simplement donner de mauvais identifiants (ici la clef d'API).
      */
     public function onAuthenticationFailure(
         Request $request,
         AuthenticationException $exception
-    ): ?Response
-    {
+    ): ?Response {
         return new JsonResponse(
             [
                 'key' => $exception->getMessageKey(),
@@ -70,5 +68,4 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
             Response::HTTP_UNAUTHORIZED
         );
     }
-
 }
