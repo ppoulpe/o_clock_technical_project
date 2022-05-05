@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
+use http\Exception\InvalidArgumentException;
 use OpenApi\Attributes\Property;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\GreaterThan;
@@ -33,7 +34,7 @@ final class ScoreToRegister
     public static function fromRequest(Request $request): self
     {
         $flatDataFromRequest = json_decode(
-            $request->getContent(),
+            (string)$request->getContent(),
             true,
             512,
             JSON_THROW_ON_ERROR
