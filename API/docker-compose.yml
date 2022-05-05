@@ -1,39 +1,41 @@
 version: "3"
 
 services:
-  apache:
-    build: docker/apache_2
-    container_name: app_oclock_apache
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./docker/config/vhosts:/etc/apache2/sites-enabled
-      - .:/home/wwwroot
-    depends_on:
-      - php
-  php:
-    build: docker/php_8_1_1
-    container_name: app_oclock_php
-    volumes:
-      - .:/home/wwwroot
-    depends_on:
-      - database
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
-    volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
+    apache:
+        build: docker/apache_2
+        container_name: app_oclock_apache
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./docker/config/vhosts:/etc/apache2/sites-enabled
+            - .:/home/wwwroot
+        depends_on:
+            - php
+    php:
+        build: docker/php_8_1_1
+        container_name: app_oclock_php
+        volumes:
+            - .:/home/wwwroot
+        depends_on:
+            - database
+    ###> doctrine/doctrine-bundle ###
+    database:
+        image: postgres:${POSTGRES_VERSION:-13}-alpine
+        container_name: app_oclock_database
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB:-oclock_db}
+            # You should definitely change the password in production
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local_password}
+            POSTGRES_USER: ${POSTGRES_USER:-local_user}
+        volumes:
+            - db-data:/var/lib/postgresql/data:rw
+            - ./docker/provision/postgres/init:/docker-entrypoint-initdb.d
+        ports:
+            - "5432"
 ###< doctrine/doctrine-bundle ###
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
+    ###> doctrine/doctrine-bundle ###
+    db-data:
 ###< doctrine/doctrine-bundle ###
