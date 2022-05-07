@@ -84,8 +84,10 @@ define(['timer'],function (timer) {
     }
 
     const init = module.init = () => {
+
         cards.forEach(
             card => {
+                card.classList.remove('flip');
 
                 // Pour chaque carte trouvée dans le DOM, on attache l'event "click"
                 // On pourra dès lors, en cliquant sur chaque carte, la retourner et vérifier si on a du flair

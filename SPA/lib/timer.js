@@ -34,7 +34,10 @@ define(['HTMLPartialRenderer'], function (HTMLPartialRenderer) {
             timerId = setInterval(resolve, 1);
         },
         stop: () => {
+
             clearInterval(timerId);
+            timer = 0;
+            console.log(timerId, timer);
         },
         getValue: () => {
             return timer / 100; // Le timer est en milliseconde, on repart sur des secondes.
