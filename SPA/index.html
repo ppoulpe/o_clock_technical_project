@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
     <!-- Important pour la partie responsive -->
@@ -7,75 +7,150 @@
     <title>Hire me, I'm awesome</title>
     <!-- ^--- Oups, faute de frappe. Mais pensez-y ! -->
 
-
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/cardsboard.css">
 </head>
 <body>
-<div class="container">
-    <h1 class="title">Pokérandom.</h1>
-    <h2 class="subtitle">C'est des Pokémon mais pas dans l'ordre.</h2>
-    <div class="columns is-centered">
-        <div class="column is-half">
-            <progress class="progress memory-timer" value="0" max="10000"></progress>
-        </div>
-    </div>
-    <div class="columns is-centered">
-        <div class="column is-half">
-            <section class="memory-game">
-                <div class="memory-card" data-framework="carapuce">
-                    <img class="front-face" src="images/carapuce.png" alt="Image d'une banane"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="carapuce">
-                    <img class="front-face" src="images/carapuce.png" alt="Image d'une banane"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="salameche">
-                    <img class="front-face" src="images/salameche.png" alt="Image d'une pomme"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="salameche">
-                    <img class="front-face" src="images/salameche.png" alt="Image d'une pomme"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="bulbizarre">
-                    <img class="front-face" src="images/bulbizarre.png" alt="Image d'une paire de cerises"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="bulbizarre">
-                    <img class="front-face" src="images/bulbizarre.png" alt="Image d'une paire de cerises"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="mewtwo">
-                    <img class="front-face" src="images/mewtwo.png" alt="Image d'une grappe de raisins"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="mewtwo">
-                    <img class="front-face" src="images/mewtwo.png" alt="Image d'une grappe de raisins"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="dracolosse">
-                    <img class="front-face" src="images/dracolosse.png" alt="Image d'une mangue."/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="dracolosse">
-                    <img class="front-face" src="images/dracolosse.png" alt="Image d'une mangue"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="pikachu">
-                    <img class="front-face" src="images/pikachu.png" alt="Image d'une orange"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-                <div class="memory-card" data-framework="pikachu">
-                    <img class="front-face" src="images/pikachu.png" alt="Image d'une orange"/>
-                    <img class="back-face" src="images/back.png" alt="Image mystère"/>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
 
+<nav class="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+            <p class="title">
+                Pokérandom
+            </p>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="mainNavbar" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="#leaderboard">Tableau des scores</a>
+            <div class="navbar-item">
+                <div class="field">
+                    <p class="control">
+                        <a class="button navbar-item start" href="#game">Jouer</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <section id="leaderboard" class="hero is-fullheight-with-navbar">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-half">
+                        <p class="title">Classement</p>
+                        <p class="subtitle">Les meilleurs, des meilleurs, des meilleurs, chef !</p>
+                        <div class="page leaderboard box">
+                            <table class="table is-hoverable is-fullwidth">
+                                <thead>
+                                <tr>
+                                    <th>Nom d'utilisateur</th>
+                                    <th>Score</th>
+                                    <th>Partie jouée le</th>
+                                </tr>
+                                </thead>
+                                <tbody class="leaderboard-content"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="game" class="hero is-fullheight-with-navbar">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="columns is-centered">
+                            <div class="column is-half">
+                                <progress class="progress memory-timer" value="0" max="10000"></progress>
+                            </div>
+                        </div>
+                        <div class="columns is-centered">
+                            <div class="column is-half">
+                                <input type="text" id="username" name="username">
+                                <button class=" button start">Démarrer la partie</button>
+                            </div>
+                        </div>
+                        <div class="columns is-centered">
+                            <div class="column is-half">
+                                <section class="memory-game">
+                                    <div class="memory-card" data-framework="carapuce">
+                                        <img class="front-face" src="images/carapuce.png" alt="Image d'une banane"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="carapuce">
+                                        <img class="front-face" src="images/carapuce.png" alt="Image d'une banane"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="salameche">
+                                        <img class="front-face" src="images/salameche.png" alt="Image d'une pomme"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="salameche">
+                                        <img class="front-face" src="images/salameche.png" alt="Image d'une pomme"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="bulbizarre">
+                                        <img class="front-face" src="images/bulbizarre.png"
+                                             alt="Image d'une paire de cerises"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="bulbizarre">
+                                        <img class="front-face" src="images/bulbizarre.png"
+                                             alt="Image d'une paire de cerises"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="mewtwo">
+                                        <img class="front-face" src="images/mewtwo.png"
+                                             alt="Image d'une grappe de raisins"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="mewtwo">
+                                        <img class="front-face" src="images/mewtwo.png"
+                                             alt="Image d'une grappe de raisins"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="dracolosse">
+                                        <img class="front-face" src="images/dracolosse.png" alt="Image d'une mangue."/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="dracolosse">
+                                        <img class="front-face" src="images/dracolosse.png" alt="Image d'une mangue"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="pikachu">
+                                        <img class="front-face" src="images/pikachu.png" alt="Image d'une orange"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+                                    <div class="memory-card" data-framework="pikachu">
+                                        <img class="front-face" src="images/pikachu.png" alt="Image d'une orange"/>
+                                        <img class="back-face" src="images/back.png" alt="Image mystère"/>
+                                    </div>
+
+
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
 
 
 <!--

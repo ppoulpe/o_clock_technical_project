@@ -85,7 +85,10 @@ class LeaderBoardController extends AbstractController
 
         return $this->json(
             ScoreToShow::fromEntity($registeredUserScore),
-            Response::HTTP_CREATED
+            Response::HTTP_CREATED,
+            [
+                'Access-Control-Allow-Origin' => '*',
+            ]
         );
     }
 
@@ -111,7 +114,10 @@ class LeaderBoardController extends AbstractController
                 static fn (Score $score): ScoreToShow => ScoreToShow::fromEntity($score),
                 $leaderBoardManager->getLeaderBoardScores()
             ),
-            Response::HTTP_OK
+            Response::HTTP_OK,
+            [
+                'Access-Control-Allow-Origin' => '*',
+            ]
         );
     }
 }

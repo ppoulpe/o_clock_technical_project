@@ -6,8 +6,16 @@
     box-sizing: border-box;
 }
 
+html{
+    background: whitesmoke url("../images/wave.svg") no-repeat fixed top;
+    scroll-behavior: smooth;
+}
+
 body {
     height: 100vh;
     display: flex;
-    background: whitesmoke;
+}
+
+nav.is-transparent{
+    background-color: transparent !important;
 }

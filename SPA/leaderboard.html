@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <!-- Important pour la partie responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hire me, I'm awesome</title>
+    <!-- ^--- Oups, faute de frappe. Mais pensez-y ! -->
+
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cardsboard.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="title">Classement.</h1>
+    <h2 class="subtitle">Les meilleurs, des meilleurs, des meilleurs, chef !.</h2>
+    <div class="columns is-centered">
+        <div class="column is-half">
+            LEADERBOARD
+        </div>
+    </div>
+</div>
+
+
+
+<!--
+Chargement des fichiers JS toujours en fin de HTML,
+pour laisser la page s'afficher sans attendre le chargement d'un script un peu lourd.
+
+Require.js va nous permettre de faire de la programmation modulaire et d'ainsi créer des briques
+qui pourront intéragir les unes avec les autres sans qu'on se retrouve avec un fichier aussi long qu'un jour sans pain.
+
+Ici, pas de magie, on va se servir de l'attribut data-main pour dire à require.js : charge moi le fichier main.js STP
+Dans ce fichier main.js : on fait notre popote avec nos modules. Simple, basique.
+-->
+<script data-main="app" src="lib/require.min.js"></script>
+</body>
+</html>
