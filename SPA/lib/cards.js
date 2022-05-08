@@ -1,4 +1,4 @@
-define(['timer'],function (timer) {
+define(['timer', 'leaderboard', 'HTMLPartialRenderer'],function (timer, leaderboard, HTMLPartialRenderer) {
 
     // Je récupère dans une constante toutes mes cartes.
     // Immutable et contient tous les éléments du DOM qui ont la classe ".memory-card"
@@ -22,7 +22,26 @@ define(['timer'],function (timer) {
         // Si toutes les cartes ont été retournées, c'est gagné !
         if(doneCards === 12){
             timer.stop();
-            alert(`C'est gagné en ${timer.getValue()} secondes`);
+
+            // Si l'utilisateur a renseigné un username, on l'enregistre dans le classement
+            if(document.querySelector('#username').value !== undefined) {
+                leaderboard.register(
+                    document.querySelector('#username').value,
+                    timer.getValue()
+                );
+            }
+
+            // On affiche le résultat du jeu : ici c'est gagné !
+            document
+                .querySelectorAll('.game-run')
+                .forEach((elem) => elem.classList.add('is-hidden'));
+
+            HTMLPartialRenderer.render('.post-run-content', 'game_over_win');
+
+            document
+                .querySelector('.post-run')
+                .classList
+                .remove('is-hidden');
         }
 
         // Je rend la main à l'utilisateur
@@ -103,6 +122,15 @@ define(['timer'],function (timer) {
                     .toString();
             }
         );
+
+        document
+            .querySelectorAll('.game-run')
+            .forEach((elem) => elem.classList.add('is-hidden'))
+
+        document
+            .querySelector('.run')
+            .classList
+            .remove('is-hidden');
 
         // On démarre le timer via le module "timer" injecté plus haut
         timer.start();

@@ -10,19 +10,24 @@ define(['HTMLPartialRenderer'], function (HTMLPartialRenderer) {
         if (timer === 10000) {
 
             // On va remplacer le board par le contenu d'un fichier HTML
-            HTMLPartialRenderer.render(
-                '.memory-game',
-                'game_over'
-            );
+            document
+                .querySelectorAll('.game-run')
+                .forEach((elem) => elem.classList.add('is-hidden'))
+
+            HTMLPartialRenderer.render('.post-run-content', 'game_over');
+
+            document
+                .querySelector('.post-run')
+                .classList
+                .remove('is-hidden');
 
             // On arrête le timer pour pas que ça continue de tourner pour rien
             clearInterval(timerId);
         }
 
         document
-            .getElementsByClassName('memory-timer')
-            .item(0)
-            .value = timer++;
+            .querySelector('.memory-timer')
+            .value = ++timer;
     };
 
     /*
@@ -31,13 +36,12 @@ define(['HTMLPartialRenderer'], function (HTMLPartialRenderer) {
      */
     return {
         start: () => {
+            clearInterval(timerId);
+            timer = 0;
             timerId = setInterval(resolve, 1);
         },
         stop: () => {
-
             clearInterval(timerId);
-            timer = 0;
-            console.log(timerId, timer);
         },
         getValue: () => {
             return timer / 100; // Le timer est en milliseconde, on repart sur des secondes.
