@@ -9,14 +9,13 @@ use App\Repository\LeaderBoardRepository;
 
 class LeaderBoardManager
 {
-    public function __construct(private readonly LeaderBoardRepository $leaderBoardRepository)
-    {
-    }
+    public function __construct(private readonly LeaderBoardRepository $leaderBoardRepository) {}
 
     public function registerUserScore(
         string $username,
         int $score
-    ): Score {
+    ): Score
+    {
         // On va changer notre DTO par une entité qui sera ensuite persisté puis flushé par Doctrine
         $userScoreEntity = (new Score())
             ->setUsername($username)
@@ -40,11 +39,13 @@ class LeaderBoardManager
     /**
      * @return array<Score>
      */
-    public function getLeaderBoardScores(): array
+    public function getLeaderBoardScores(?int $limit = null): array
     {
         // Je retourne tous les scores du leaderboard
         return $this
             ->leaderBoardRepository
-            ->findAll();
+            ->findBy(
+                [], ['score' => 'ASC'], $limit, 0
+            );
     }
 }

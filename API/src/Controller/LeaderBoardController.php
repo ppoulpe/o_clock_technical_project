@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 #[Route('/api/v1.0/leaderboard', name: 'leaderboard_')]
 class LeaderBoardController extends AbstractController
 {
-    #[Route('/', name: 'register', methods: ['POST'])]
+    #[Route('', name: 'register', methods: ['POST'])]
     #[RequestBody(
         description: 'User score to register in leaderboard',
         required: true,
@@ -92,7 +92,7 @@ class LeaderBoardController extends AbstractController
         );
     }
 
-    #[Route('/', name: 'show', methods: ['GET'])]
+    #[Route('', name: 'show', methods: ['GET'])]
     #[OA\Response(
         response: 200,
         description: 'Leaderboard informations.',
@@ -106,13 +106,16 @@ class LeaderBoardController extends AbstractController
             )
         )
     )]
-    public function showLeaderBoard(LeaderBoardManager $leaderBoardManager): JsonResponse
+    public function showLeaderBoard(
+        LeaderBoardManager $leaderBoardManager,
+        Request $request
+    ): JsonResponse
     {
         return $this->json(
             // On va changer toutes les entités en DTO que l'on va pouvoir exposer vers l'exterieur
             array_map(
                 static fn (Score $score): ScoreToShow => ScoreToShow::fromEntity($score),
-                $leaderBoardManager->getLeaderBoardScores()
+                $leaderBoardManager->getLeaderBoardScores((int)$request->query->get('limit'))
             ),
             Response::HTTP_OK,
             [
