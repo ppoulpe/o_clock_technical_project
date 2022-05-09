@@ -36,8 +36,6 @@ define(['HTMLPartialRenderer'], function (HTMLPartialRenderer) {
      */
     return {
         start: () => {
-            clearInterval(timerId);
-            timer = 0;
             timerId = setInterval(resolve, 1);
         },
         stop: () => {

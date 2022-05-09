@@ -36,8 +36,10 @@ define(['timer', 'leaderboard', 'HTMLPartialRenderer'],function (timer, leaderbo
                 .querySelectorAll('.game-run')
                 .forEach((elem) => elem.classList.add('is-hidden'));
 
+            // On va afficher un message un peu classe, le joueur à gagné !
             HTMLPartialRenderer.render('.post-run-content', 'game_over_win');
 
+            // On affiche le post-run
             document
                 .querySelector('.post-run')
                 .classList

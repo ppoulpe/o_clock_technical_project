@@ -14,6 +14,7 @@ define(function () {
             .querySelector('.leaderboard-content')
             .innerHTML = '';
 
+        // On va récupérer via un fetch les 10 derniers meilleurs scores
         fetch(
             `${leaderboardApiBaseUrl}/leaderboard?limit=10`,
             {
