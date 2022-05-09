@@ -11,7 +11,7 @@ class PostLeaderBoardTest extends WebTestCase
     public function testPostUserScoreWithoutApiToken(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('POST', 'https://localhost/api/v1.0/leaderboard/');
+        $crawler = $client->request('POST', 'https://localhost/api/v1.0/leaderboard');
 
         self::assertEquals(
             '{"code":0,"message":"Full authentication is required to access this resource."}',
@@ -30,7 +30,7 @@ class PostLeaderBoardTest extends WebTestCase
         $client = static::createClient();
         $client->jsonRequest(
             'POST',
-            'https://localhost/api/v1.0/leaderboard/',
+            'https://localhost/api/v1.0/leaderboard',
             $score,
             ['HTTP_x-api-key' => 'MY_AWESOME_APP']
         );
@@ -63,7 +63,7 @@ class PostLeaderBoardTest extends WebTestCase
         $client = static::createClient();
         $client->jsonRequest(
             'POST',
-            'https://localhost/api/v1.0/leaderboard/',
+            'https://localhost/api/v1.0/leaderboard',
             $score,
             ['HTTP_x-api-key' => 'MY_AWESOME_APP']
         );
