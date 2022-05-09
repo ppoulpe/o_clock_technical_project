@@ -109,13 +109,12 @@ class LeaderBoardController extends AbstractController
     public function showLeaderBoard(
         LeaderBoardManager $leaderBoardManager,
         Request $request
-    ): JsonResponse
-    {
+    ): JsonResponse {
         return $this->json(
             // On va changer toutes les entités en DTO que l'on va pouvoir exposer vers l'exterieur
             array_map(
                 static fn (Score $score): ScoreToShow => ScoreToShow::fromEntity($score),
-                $leaderBoardManager->getLeaderBoardScores((int)$request->query->get('limit'))
+                $leaderBoardManager->getLeaderBoardScores((int) $request->query->get('limit', 100))
             ),
             Response::HTTP_OK,
             [
